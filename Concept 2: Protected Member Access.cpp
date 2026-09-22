@@ -1,25 +1,33 @@
 #include <iostream>
 #include <string>
 #include <utility>
+using namespace std;
+
 class Employee {
 protected:
- std::string name;
+    string name;
+
 public:
- explicit Employee(std::string employeeName) : name(std::move(employeeName)) {}
+    explicit Employee(string employeeName) : name(move(employeeName)) {}
 };
+
 class Developer : public Employee {
 private:
- std::string language;
+    string language;
+
 public:
- Developer(std::string employeeName, std::string programmingLanguage)
- : Employee(std::move(employeeName)), language(std::move(programmingLanguage)) {}
- void display() const {
- std::cout << "Developer: " << name << '\n';
- std::cout << "Language: " << language << '\n';
- }
+    Developer(string employeeName, string programmingLanguage)
+        : Employee(move(employeeName)), language(move(programmingLanguage)) {}
+
+    void display() const {
+        cout << "Developer: " << name << '\n';
+        cout << "Language: " << language << '\n';
+    }
 };
+
 int main() {
- Developer developer("Sneha", "C++");
- developer.display();
- return 0;
+    Developer developer("Sneha", "C++");
+    developer.display();
+
+    return 0;
 }
